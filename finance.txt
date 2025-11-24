@@ -1,0 +1,3 @@
+EXPENSE,5.0,BILLS
+INCOME,10.0,satta
+INCOME,1000.0,salary
