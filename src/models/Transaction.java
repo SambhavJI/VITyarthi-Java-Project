@@ -2,7 +2,6 @@ package models;
 
 import exceptions.InvalidAmountException;
 
-// Printable interface
 interface Printable {
     void printDetails();
 }
@@ -12,7 +11,6 @@ public abstract class Transaction implements Printable {
     protected double amount;
     protected String note;
 
-    // Inner validator class
     public class Validator {
         public void validate(double amt) throws InvalidAmountException {
             if (amt <= 0) {

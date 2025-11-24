@@ -8,7 +8,6 @@ public class FinanceManager {
 
     private List<Transaction> list = new ArrayList<>();
 
-    // Add Income
     public void addIncome(double amt, String src) throws InvalidAmountException {
         Transaction.Validator validator = new Transaction(amt, src) {
             @Override public void printDetails() {}
@@ -19,17 +18,14 @@ public class FinanceManager {
         System.out.println("Income added.");
     }
 
-    // Add Expense
-    // Add Expense with balance check
 public void addExpense(double amt, Category c) throws InvalidAmountException {
 
-    // validate amount
+
     Transaction.Validator validator = new Transaction(amt, c.name()) {
         @Override public void printDetails() {}
     }.new Validator();
     validator.validate(amt);
 
-    // calculate current balance
     double income = 0, expense = 0;
     for (Transaction t : list) {
         if (t instanceof Income) income += t.getAmount();
@@ -37,7 +33,6 @@ public void addExpense(double amt, Category c) throws InvalidAmountException {
     }
     double currentBalance = income - expense;
 
-    // check if balance is enough
     if (currentBalance <= 0) {
         System.out.println("ERROR: No income available! Add income first.");
         return;
@@ -52,7 +47,6 @@ public void addExpense(double amt, Category c) throws InvalidAmountException {
     System.out.println("Expense added.");
 }
 
-    // View all (uses anonymous class for sorting)
     public void viewTransactions() {
         Collections.sort(list, new Comparator<Transaction>() {
             @Override
@@ -64,7 +58,6 @@ public void addExpense(double amt, Category c) throws InvalidAmountException {
         for (Transaction t : list) t.printDetails();
     }
 
-    // Summary
     public void viewSummary() {
         double income = 0, expense = 0;
 
@@ -79,7 +72,6 @@ public void addExpense(double amt, Category c) throws InvalidAmountException {
         System.out.println("Balance: " + (income - expense));
     }
 
-    // Auto-save
     public void autoSave(FileManager fm) {
         fm.saveToFile();
     }

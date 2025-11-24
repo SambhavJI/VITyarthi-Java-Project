@@ -14,10 +14,8 @@ public class App {
         FinanceManager manager = new FinanceManager();
         FileManager fileManager = new FileManager(manager);
 
-        // Load old data
         fileManager.loadFromFile();
 
-        // Start auto-save thread
         Thread autoSaveThread = new Thread(new Runnable() {
             @Override
             public void run() {
